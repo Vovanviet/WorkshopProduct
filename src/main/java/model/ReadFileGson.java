@@ -16,6 +16,7 @@ public class ReadFileGson {
             FileReader reader=new FileReader("product.json");
             Type type=new TypeToken<List<Product>>(){}.getType();
             products=new Gson().fromJson(reader,type);
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

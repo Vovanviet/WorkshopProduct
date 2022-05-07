@@ -59,11 +59,13 @@ public class ProductDaoImpl implements ProductDao{
     }
 
     @Override
-    public void deleteProduct(Product product) {
+    public void deleteProduct(String name) {
         Session session=HibernateUtil.getSessionFactory().openSession();
         try {
             session.beginTransaction();
-            session.delete(product);
+            Query query=session.createQuery("DELETE FROM Product where proName=:p_name");
+            query.setParameter("p_name",name);
+            query.executeUpdate();
             session.getTransaction().commit();
             System.out.println("Delete success");
         } catch (Exception e) {
@@ -77,8 +79,15 @@ public class ProductDaoImpl implements ProductDao{
         Session session=HibernateUtil.getSessionFactory().openSession();
         try {
             session.beginTransaction();
-            session.update(product);
+//            session.update(product);
+            String hql="UPDATE Product SET proDesc=:p_desc,Price=:p_price WHERE proName=:p_name";
+            Query query= session.createQuery(hql);
+            query.setParameter("p_name",product.getProName());
+            query.setParameter("p_desc",product.getProDesc());
+            query.setParameter("p_price",product.getPrice());
+            query.executeUpdate();
             session.getTransaction().commit();
+            System.out.println("update  success");
         } catch (Exception e) {
             e.printStackTrace();
             session.getTransaction().rollback();

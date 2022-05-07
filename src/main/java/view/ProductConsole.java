@@ -5,6 +5,7 @@ import entity.Product;
 import model.ReadFileGson;
 import model.WriteFile;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class ProductConsole {
@@ -87,9 +88,9 @@ public class ProductConsole {
     private void deleteProduct(){
         System.out.println("Enter name product:");
         String proName= sc.next();
-        Product product=new Product(proName);
+//        Product product=new Product(proName);
         ProductController productController=new ProductController();
-        productController.deleteProduct(product);
+        productController.deleteProduct(proName);
     }
     private void searchProduct(){
         System.out.println("Enter name product:");
@@ -104,7 +105,10 @@ public class ProductConsole {
         String newDesc= sc.next();
         System.out.println("Enter price:");
         Double newPrice= Double.parseDouble(sc.next());
-        Product product=new Product(newName,newDesc,newPrice);
+        Product product=new Product();
+        product.setProName(newName);
+        product.setProDesc(newDesc);
+        product.setPrice(newPrice);
         ProductController productController=new ProductController();
         productController.updateProduct(product);
     }
@@ -113,14 +117,17 @@ public class ProductConsole {
         productController.getAllProduct();
     }
     private void WriteFile(){
-        System.out.println("Enter product name:");
-        String newName= sc.next();
-        System.out.println("Enter description product:");
-        String newDesc= sc.next();
-        System.out.println("Enter price:");
-        Double newPrice= sc.nextDouble();
-        Product product=new Product(newName,newDesc,newPrice);
-        WriteFile.WriteFile(product);
+//        System.out.println("Enter product name:");
+//        String newName= sc.next();
+//
+//        System.out.println("Enter description product:");
+//        String newDesc= sc.next();
+//        System.out.println("Enter price:");
+//        Double newPrice= sc.nextDouble();
+//        Product product=new Product(newName,newDesc,newPrice);
+        ProductController productController=new ProductController();
+        List<Product> products= productController.getAllProduct();
+        WriteFile.WriteFile(products);
     }
     private void ReadFile(){
         ReadFileGson readFileGson=new ReadFileGson();

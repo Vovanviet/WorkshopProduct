@@ -20,9 +20,9 @@ public class ProductController {
         ProductDao productDao=new ProductDaoImpl();
         productDao.createProduct(product);
     }
-    public void deleteProduct(Product product){
+    public void deleteProduct(String name){
         ProductDao productDao=new ProductDaoImpl();
-        productDao.deleteProduct(product);
+        productDao.deleteProduct(name);
     }
     public void updateProduct(Product product){
         ProductDao productDao=new ProductDaoImpl();
