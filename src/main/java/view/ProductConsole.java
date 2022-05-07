@@ -131,8 +131,8 @@ public class ProductConsole {
     }
     private void ReadFile(){
         ReadFileGson readFileGson=new ReadFileGson();
-        readFileGson.getDataGson();
-        System.out.println(readFileGson);
+        List<Product>products= readFileGson.getDataGson();
+        System.out.println(products);
     }
 
 }
