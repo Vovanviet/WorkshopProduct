@@ -4,5 +4,17 @@
     "proName": "samsung",
     "proDesc": "s22ultra",
     "Price": 1000.0
+  },
+  {
+    "id": 7,
+    "proName": "Bphone",
+    "proDesc": "B86",
+    "Price": 1200.0
+  },
+  {
+    "id": 8,
+    "proName": "FindX3",
+    "proDesc": "OppoNewPhone",
+    "Price": 3000.0
   }
 ]
