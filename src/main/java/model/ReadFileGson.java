@@ -4,11 +4,8 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import entity.Product;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -24,8 +21,6 @@ public class ReadFileGson {
             reader.close();
            return products;
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
