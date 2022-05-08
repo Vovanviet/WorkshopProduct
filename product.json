@@ -1,1 +1,8 @@
-[{"id":6, "proName":"samsung", "proDesc":"s22ultra", "Price":1000.0}]
+[
+  {
+    "id": 6,
+    "proName": "samsung",
+    "proDesc": "s22ultra",
+    "Price": 1000.0
+  }
+]

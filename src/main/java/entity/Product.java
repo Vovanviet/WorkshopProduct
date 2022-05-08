@@ -64,11 +64,11 @@ public class Product {
 
     @Override
     public String toString() {
-        return "[{" +
+        return "{" +
                 "\"id\":" + id +
                 ", \"proName\":\"" + proName + '\"' +
                 ", \"proDesc\":\"" + proDesc + '\"' +
                 ", \"Price\":" + Price +
-                "}]";
+                "}";
     }
 }
