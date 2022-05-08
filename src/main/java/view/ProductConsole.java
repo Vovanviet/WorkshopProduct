@@ -24,9 +24,10 @@ public class ProductConsole {
         System.out.println("5.Write to Json");
         System.out.println("6.Read from Json");
         System.out.println("7.Update Product");
-        System.out.println("8.Exit");
+        System.out.println("8.Update by Json");
+        System.out.println("9.Exit");
         System.out.println("Your choice:");
-        int choice=readInt(1,8);
+        int choice=readInt(1,9);
         return choice;
     }
     public int readInt(int min , int max){
@@ -67,6 +68,9 @@ public class ProductConsole {
                     updateProduct();
                     break;
                 case 8:
+                    updateByJson();
+                    break;
+                case 9:
                     System.out.println("Pai Pai");
                     System.exit(8);
                 default:
@@ -80,7 +84,7 @@ public class ProductConsole {
         System.out.println("Enter description product:");
         String newDesc= sc.next();
         System.out.println("Enter price:");
-        Double newPrice= sc.nextDouble();
+        Double newPrice= Double.parseDouble(sc.next());
         Product product=new Product(newName,newDesc,newPrice);
         ProductController productController=new ProductController();
         productController.createProduct(product);
@@ -88,7 +92,6 @@ public class ProductConsole {
     private void deleteProduct(){
         System.out.println("Enter name product:");
         String proName= sc.next();
-//        Product product=new Product(proName);
         ProductController productController=new ProductController();
         productController.deleteProduct(proName);
     }
@@ -117,14 +120,6 @@ public class ProductConsole {
         productController.getAllProduct();
     }
     private void WriteFile(){
-//        System.out.println("Enter product name:");
-//        String newName= sc.next();
-//
-//        System.out.println("Enter description product:");
-//        String newDesc= sc.next();
-//        System.out.println("Enter price:");
-//        Double newPrice= sc.nextDouble();
-//        Product product=new Product(newName,newDesc,newPrice);
         ProductController productController=new ProductController();
         List<Product> products= productController.getAllProduct();
         WriteFile.WriteFile(products);
@@ -134,5 +129,25 @@ public class ProductConsole {
         List<Product>products= readFileGson.getDataGson();
         System.out.println(products);
     }
+    private void updateByJson(){
+        ReadFileGson readFileGson=new ReadFileGson();
+        List<Product>products= readFileGson.getDataGson();
+        System.out.println("Enter name");
+        String newName= sc.next();
+        products.forEach(t->{
+            if (newName.equals(t.getProName())){
+                System.out.println("Enter new Desc");
+                String newDesc= sc.next();
+                System.out.println("Enter new Price:");
+                double newPrice=Double.parseDouble(sc.next());
+                t.setProDesc(newDesc);
+                t.setPrice(newPrice);
+                WriteFile.WriteFile(products);
+            }else {
+                System.out.println("Name Incorrect!!!");
+            }
+        });
+    }
+
 
 }
